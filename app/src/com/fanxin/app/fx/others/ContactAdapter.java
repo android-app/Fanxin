@@ -65,6 +65,7 @@ public class ContactAdapter extends ArrayAdapter<User> implements
                 .findViewById(R.id.tv_name);
         TextView tvHeader = (TextView) convertView.findViewById(R.id.header);
         View view_temp = (View) convertView.findViewById(R.id.view_temp);
+        Log.e("cdh", "view_temp=" + view_temp);
         User user = getItem(position);
         if (user == null)
             Log.d("ContactAdapter", position + "");

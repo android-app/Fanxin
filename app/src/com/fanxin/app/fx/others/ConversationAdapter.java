@@ -13,6 +13,7 @@ import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.TextMessageBody;
+import com.easemob.exceptions.EaseMobException;
 import com.fanxin.app.Constant;
 import com.fanxin.app.DemoApplication;
 import com.fanxin.app.R;
@@ -176,6 +177,37 @@ public class ConversationAdapter extends BaseAdapter {
                 holder.tv_name.setText(nick);
                 // 显示头像
                 showUserAvatar(holder.iv_avatar, avatar);
+            }else{
+                EMMessage message=conversation.getLastMessage();
+                if(message.direct==EMMessage.Direct.RECEIVE){
+                    try {
+                        nick=message.getStringAttribute("myUserNick");
+                        String avatar=message.getStringAttribute("myUserAvatar");
+                        // 显示昵称
+                        holder.tv_name.setText(nick);
+                        // 显示头像
+                        showUserAvatar(holder.iv_avatar, avatar);
+                        
+                    } catch (EaseMobException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    
+                   
+                }else{
+                    try {
+                        nick=message.getStringAttribute("toUserNick");
+                        String avatar=message.getStringAttribute("toUserAvatar");
+                        // 显示昵称
+                        holder.tv_name.setText(nick);
+                        // 显示头像
+                        showUserAvatar(holder.iv_avatar, avatar);
+                        
+                    } catch (EaseMobException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
             }
 
         }

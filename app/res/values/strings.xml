@@ -63,5 +63,13 @@
       <string name="exit_group">退出</string>
       <string name="connect_conflict">同一帐号已在其他设备登录</string>
       <string name="em_user_remove">此用户已被移除</string>
-      
+         <!-- 上拉加载，下拉刷新 -->
+    <string name="pull_to_refresh">下拉可以刷新</string>
+    <string name="release_to_refresh">松开可以刷新</string>
+    <string name="lastUpdateTime">最近更新：%s</string>
+    <string name="load_full">已加载全部</string>
+    <string name="no_data">暂无数据</string>
+    <string name="more">加载中</string>
+      <!-- 消除警告，可忽略 -->
+    <string name="d">图片描述</string>
 </resources>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fanxin.app"
-    android:versionCode="12"
-    android:versionName="2.1.5" >
+    android:versionCode="16"
+    android:versionName="2.1.6" >
 
     <uses-sdk
         android:minSdkVersion="9"
@@ -372,19 +372,25 @@
             android:theme="@style/horizontal_slide"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-     <activity
+        <activity
             android:name="com.fanxin.app.fx.ChatRoomActivity"
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-             <activity
+        <activity
             android:name="com.fanxin.app.fx.SettingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/horizontal_slide"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-     
+        <activity
+            android:name="com.fanxin.app.fx.LasterLoginUserActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"
+            android:windowSoftInputMode="adjustPan" >
+        </activity>
+
         <!-- 开机自启动服务 -->
         <receiver android:name="com.easemob.chat.StartServiceReceiver" >
             <intent-filter android:priority="1000" >

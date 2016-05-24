@@ -5,14 +5,6 @@
     android:background="#eee"
     android:orientation="vertical" >
 
-    
-
-        
- 
-
-      
-    
-    
     <RelativeLayout
         android:id="@+id/title"
         android:layout_width="match_parent"
@@ -62,6 +54,7 @@
             android:layout_marginRight="8dp"
             android:background="@drawable/btn_register_bg"
             android:gravity="center"
+            android:onClick="sendLocation"
             android:text="保存"
             android:textColor="#fff"
             android:textSize="14sp" />

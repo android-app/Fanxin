@@ -163,11 +163,21 @@
         <item name="android:includeFontPadding">false</item>
         <item name="android:background">@drawable/edit_text_bg</item>
     </style>
-    
+
     <!-- 右上角popupwindow -->
     <style name="AnimationPreview">
         <item name="android:windowEnterAnimation">@anim/fade_in</item>
         <item name="android:windowExitAnimation">@anim/fade_out</item>
+    </style>
+
+    
+    
+     <!-- 下拉刷新，上拉加载 -->
+     <style name="customProgressBar" parent="@android:style/Widget.ProgressBar.Small">
+        <item name="android:indeterminateDrawable">@drawable/custom_progress_bar</item>
+        <item name="android:layout_width">21dip</item>
+        <item name="android:layout_height">21dip</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 
 </resources>

@@ -11,6 +11,8 @@ import java.util.Map;
 
 
 
+
+
 import com.fanxin.app.Constant;
 import com.fanxin.app.DemoApplication;
 import com.fanxin.app.R;
@@ -20,6 +22,7 @@ import com.fanxin.app.fx.others.LoadDataFromServer;
 import com.fanxin.app.fx.others.LoadUserAvatar;
 import com.fanxin.app.fx.others.LoadDataFromServer.DataCallBack;
 import com.fanxin.app.fx.others.LoadUserAvatar.ImageDownloadedCallBack;
+import com.fanxin.app.fx.others.LocalUserInfo;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.easemob.util.HanziToPinyin;
@@ -35,6 +38,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class UserInfoActivity extends Activity {
     private LoadUserAvatar avatarLoader;
@@ -76,10 +80,14 @@ public class UserInfoActivity extends Activity {
 
             @Override
             public void onClick(View v) {
+                if(hxid.equals(LocalUserInfo.getInstance(getApplicationContext()).getUserInfo("hxid"))){
+                    Toast.makeText(getApplicationContext(), "不能和自己聊天。。", Toast.LENGTH_SHORT).show();
+                    return ;
+                }
                 if (is_friend) {
                     Intent intent = new Intent();
                     intent.putExtra("userId", hxid);
-           
+                    intent.putExtra("userAvatar", avatar);
                     intent.putExtra("userNick", nick);
 
                     intent.setClass(UserInfoActivity.this, ChatActivity.class);
@@ -96,6 +104,27 @@ public class UserInfoActivity extends Activity {
                     startActivity(intent);
 
                 }
+            }
+
+        });
+        
+        Button btn_new= (Button) this.findViewById(R.id.btn_new);
+        btn_new.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                     if(hxid.equals(LocalUserInfo.getInstance(getApplicationContext()).getUserInfo("hxid"))){
+                         Toast.makeText(getApplicationContext(), "不能和自己聊天。。", Toast.LENGTH_SHORT).show();
+                         return ;
+                     }
+                    Intent intent = new Intent();
+                    intent.putExtra("userId", hxid);
+           
+                    intent.putExtra("userNick", nick);
+                    intent.putExtra("userAvatar", avatar);
+                    intent.setClass(UserInfoActivity.this, ChatActivity.class);
+                    startActivity(intent);
+             
             }
 
         });

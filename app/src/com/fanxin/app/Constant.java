@@ -7,8 +7,6 @@ public class Constant {
 	public static final String MESSAGE_ATTR_IS_VOICE_CALL = "is_voice_call";
 	public static final String ACCOUNT_REMOVED = "account_removed";	
 
-    
-    
     //服务器端
     public static final String URL_Register = "http://120.24.211.126/fanxin/register.php";
     public static final String URL_Register_Tel = "http://120.24.211.126/fanxin/register_tel.php";
@@ -24,6 +22,8 @@ public class Constant {
     public static final String URL_Get_UserInfo= "http://120.24.211.126/fanxin/get_userinfo.php";
     public static final String URL_UPDATE_Sex = "http://120.24.211.126/fanxin/update_sex.php";
     public static final String URL_UPDATE_Groupnanme ="http://120.24.211.126/fanxin/update_groupname.php";
+    public static final String URL_UPDATETIME ="http://120.24.211.126/fanxin/update_time.php";
+    public static final String URL_LASTERLOGIN="http://120.24.211.126/fanxin/laster_login.php";
     
     
 }

@@ -13,17 +13,24 @@
  */
 package com.fanxin.app;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import android.app.Application;
 import android.content.Context;
 
+import com.alibaba.fastjson.JSONObject;
 import com.easemob.EMCallBack;
 import com.fanxin.app.domain.User;
+import com.fanxin.app.fx.others.LoadDataFromServer;
 import com.fanxin.app.fx.others.TopUser;
 
 public class DemoApplication extends Application {
-
+    public static String last_time ="0";
+    public List<JSONObject> list= new ArrayList<JSONObject>();    
+    public static int page=0;
 	public static Context applicationContext;
 	private static DemoApplication instance;
 	// login user name
@@ -59,9 +66,19 @@ public class DemoApplication extends Application {
          *     // do HuanXin related work
          * }
          */
-        hxSDKHelper.onInit(applicationContext);
+        hxSDKHelper.onInit(applicationContext);    
+        getTime();
+        
 	}
-
+    private  void getTime(){
+        String hxid=getUserName();
+        if(hxid==null) return;
+        Map<String,String > map=new HashMap<String,String >();
+        map.put("hxid",hxid );
+        LoadDataFromServer task=new LoadDataFromServer(getApplicationContext(), Constant.URL_UPDATETIME, map);
+        task.getData(null);
+        
+    }
 	public static DemoApplication getInstance() {
 		return instance;
 	}

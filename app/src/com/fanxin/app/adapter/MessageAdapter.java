@@ -45,6 +45,7 @@ import com.easemob.chat.VideoMessageBody;
 import com.easemob.chat.VoiceMessageBody;
 import com.fanxin.app.Constant;
 import com.fanxin.app.R;
+import com.fanxin.app.activity.ContextMenu;
 import com.fanxin.app.activity.FXAlertDialog;
 import com.fanxin.app.activity.BaiduMapActivity;
 import com.fanxin.app.activity.ShowBigImage;
@@ -638,16 +639,16 @@ public class MessageAdapter extends BaseAdapter {
         // 设置内容
         holder.tv.setText(span, BufferType.SPANNABLE);
         // 设置长按事件监听
-        // holder.tv.setOnLongClickListener(new OnLongClickListener() {
-        // @Override
-        // public boolean onLongClick(View v) {
-        // activity.startActivityForResult((new Intent(activity,
-        // ContextMenu.class)).putExtra("position", position)
-        // .putExtra("type", EMMessage.Type.TXT.ordinal()),
-        // ChatActivity.REQUEST_CODE_CONTEXT_MENU);
-        // return true;
-        // }
-        // });
+        holder.tv.setOnLongClickListener(new OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                activity.startActivityForResult((new Intent(activity,
+                        ContextMenu.class)).putExtra("position", position)
+                        .putExtra("type", EMMessage.Type.TXT.ordinal()),
+                        ChatActivity.REQUEST_CODE_CONTEXT_MENU);
+                return true;
+            }
+        });
 
         if (message.direct == EMMessage.Direct.SEND) {
             switch (message.status) {

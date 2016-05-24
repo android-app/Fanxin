@@ -148,6 +148,17 @@ public class MainActivity extends BaseActivity {
 
         });
 
+        TextView tv_online = (TextView) this.findViewById(R.id.tv_online);
+        tv_online.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,
+                        LasterLoginUserActivity.class));
+            }
+
+        });
+
     }
 
     private void initView() {

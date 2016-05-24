@@ -83,6 +83,7 @@ import com.fanxin.app.DemoApplication;
 import com.fanxin.app.R;
 import com.fanxin.app.activity.BaiduMapActivity;
 import com.fanxin.app.activity.BaseActivity;
+import com.fanxin.app.activity.ForwardMessageActivity;
 import com.fanxin.app.activity.ImageGridActivity;
 import com.fanxin.app.activity.VoiceCallActivity;
 import com.fanxin.app.adapter.ExpressionAdapter;
@@ -187,6 +188,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 
     String myUserNick = "";
     String myUserAvatar = "";
+    String toUserNick="";
+    String toUserAvatar="";
     // 分享的照片
     String iamge_path = null;
     // 设置按钮
@@ -348,7 +351,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
             toChatUsername = getIntent().getStringExtra("userId");
             String toChatUserNick = getIntent().getStringExtra("userNick");
             ((TextView) findViewById(R.id.name)).setText(toChatUserNick);
-
+            toUserNick=getIntent().getStringExtra("userNick");
+            toUserAvatar=getIntent().getStringExtra("userAvatar");
         } else {
 
             findViewById(R.id.container_voice_call).setVisibility(View.GONE);
@@ -489,12 +493,11 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
                 break;
 
             case RESULT_CODE_FORWARD: // 转发消息
-                // EMMessage forwardMsg = (EMMessage) adapter.getItem(data
-                // .getIntExtra("position", 0));
-                // Intent intent = new Intent(this,
-                // ForwardMessageActivity.class);
-                // intent.putExtra("forward_msg_id", forwardMsg.getMsgId());
-                // startActivity(intent);
+                EMMessage forwardMsg = (EMMessage) adapter.getItem(data
+                        .getIntExtra("position", 0));
+                Intent intent = new Intent(this, ForwardMessageActivity.class);
+                intent.putExtra("forward_msg_id", forwardMsg.getMsgId());
+                startActivity(intent);
 
                 break;
 
@@ -737,8 +740,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
             message.addBody(txtBody);
             // 设置要发给谁,用户username或者群聊groupid
             message.setReceipt(toChatUsername);
-            // message.setAttribute("to_usernick", toChatUserNick);
-            // message.setAttribute("to_useravatar", toChatUserAvatar);
+//              message.setAttribute("toUserNick", toUserNick);
+//              message.setAttribute("toUserAvatar", toUserAvatar);
             message.setAttribute("useravatar", myUserAvatar);
             message.setAttribute("usernick", myUserNick);
             // 把messgage加到conversation中
@@ -774,9 +777,9 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
             if (chatType == CHATTYPE_GROUP)
                 message.setChatType(ChatType.GroupChat);
             message.setReceipt(toChatUsername);
-            // message.setAttribute("to_usernick", toChatUserNick);
-            // message.setAttribute("to_useravatar", toChatUserAvatar);
-            message.setAttribute("useravatar", myUserAvatar);
+            message.setAttribute("toUserNick", toUserNick);
+            //message.setAttribute("toUserAvatar", toUserAvatar);
+            //message.setAttribute("useravatar", myUserAvatar);
             message.setAttribute("usernick", myUserNick);
             int len = Integer.parseInt(length);
             VoiceMessageBody body = new VoiceMessageBody(new File(filePath),
@@ -810,9 +813,9 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
             message.setChatType(ChatType.GroupChat);
 
         message.setReceipt(to);
-        // message.setAttribute("to_usernick", toChatUserNick);
-        // message.setAttribute("to_useravatar", toChatUserAvatar);
-        message.setAttribute("useravatar", myUserAvatar);
+        message.setAttribute("toUserNick", toUserNick);
+        //message.setAttribute("toUserAvatar", toUserAvatar);
+        //message.setAttribute("useravatar", myUserAvatar);
         message.setAttribute("usernick", myUserNick);
         if (is_share) {
             message.setAttribute("isShare", "yes");
@@ -847,9 +850,9 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
                 message.setChatType(ChatType.GroupChat);
             String to = toChatUsername;
             message.setReceipt(to);
-            // message.setAttribute("to_usernick", toChatUserNick);
-            // message.setAttribute("to_useravatar", toChatUserAvatar);
-            message.setAttribute("useravatar", myUserAvatar);
+            message.setAttribute("toUserNick", toUserNick);
+            //message.setAttribute("toUserAvatar", toUserAvatar);
+            //message.setAttribute("useravatar", myUserAvatar);
             message.setAttribute("usernick", myUserNick);
             VideoMessageBody body = new VideoMessageBody(videoFile, thumbPath,
                     length, videoFile.length());
@@ -921,9 +924,9 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
                 latitude, longitude);
         message.addBody(locBody);
         message.setReceipt(toChatUsername);
-        // message.setAttribute("to_usernick", toChatUserNick);
-        // message.setAttribute("to_useravatar", toChatUserAvatar);
-        message.setAttribute("useravatar", myUserAvatar);
+        message.setAttribute("toUserNick", toUserNick);
+        //message.setAttribute("toUserAvatar", toUserAvatar);
+        //message.setAttribute("useravatar", myUserAvatar);
         message.setAttribute("usernick", myUserNick);
         conversation.addMessage(message);
         listView.setAdapter(adapter);
@@ -980,9 +983,9 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
         NormalFileMessageBody body = new NormalFileMessageBody(new File(
                 filePath));
         message.addBody(body);
-        // message.setAttribute("to_usernick", toChatUserNick);
-        // message.setAttribute("to_useravatar", toChatUserAvatar);
-        message.setAttribute("useravatar", myUserAvatar);
+        message.setAttribute("toUserNick", toUserNick);
+        //message.setAttribute("toUserAvatar", toUserAvatar);
+        //message.setAttribute("useravatar", myUserAvatar);
         message.setAttribute("usernick", myUserNick);
         conversation.addMessage(message);
         listView.setAdapter(adapter);

@@ -153,6 +153,19 @@
             android:text="添加到通讯录"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
+        <Button
+            android:id="@+id/btn_new"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/btn_register_bg"
+            android:paddingBottom="7dp"
+            android:paddingTop="7dp"
+            android:text="新增按钮，不作判断，直接聊天"
+            android:textColor="@android:color/white"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>
